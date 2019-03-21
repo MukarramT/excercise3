@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>API javascript</title>
+  <script type="text/javascript" src="api.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style media="screen">
+    .margins{
+      margin: 0 auto;
+      width: 80%;
+      color: #e0e0e0;
+    }
+    p{
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="red darken-4 margins">
+  <div class="wrap" id="output">
+    <script type="text/javascript">
+      var i;
+      var table = "<table class='tbl-edit' id='tbl-id'><thead><tr class='tr-edit'><td><input type='text' id='name-id' placeholder='NAMA'></td><td><input type='number' id='rot-id' placeholder='ROTATION'></td><td><input type='number' id='orb-id' placeholder='ORBITAL'></td><td><input type='number' id='diam-id' placeholder='DIAMETER'></td><td><input type='text' id='surf-id' placeholder='WATER SURFACE'></td></tr></thead><tbody id='tbody-id'>"
+
+        for(i=0;i<obj.length;i++){
+          table += "<tr class='tr-output'><td class='value-name'><p>"+obj[i].name+"</p></td><td class='value-rot'><p>"+obj[i].rotation_period+"</p></td><td class='value-orb'><p>"+obj[i].orbital_period+"</p></td><td class='value-diam'><p>"+obj[i].diameter+"</p></td><td class='value-surf'><p>"+obj[i].surface_water+"</td></tr>";
+          }
+          table += "</tbody></table>";
+
+          document.getElementById("output").innerHTML = table;
+
+          var filterInput = document.getElementById("name-id");
+          if(filterInput){
+            filterInput.addEventListener('keyup', filterName);
+
+            function filterName(){
+              var filterValue = document.getElementById('name-id').value.toUpperCase();
+              var table = document.getElementById('tbl-id');
+              var td = table.querySelectorAll('td.value-name');
+              var tr = table.querySelectorAll('tr.tr-output');
+              var i;
+
+              for(i=0; i<td.length;i++){
+                var a = td[i].getElementsByTagName('p')[0];
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                  tr[i].style.display = '';
+                }
+                else{
+                  tr[i].style.display = 'none';
+
+                  for(i=0; i<td.length;i++){
+                    var a = td[i].getElementsByTagName('p')[0];
+
+                    if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                      tr[i].style.display = '';
+                      document.getElementById("surf-id").disabled = false;
+                      document.getElementById("rot-id").disabled = false;
+                      document.getElementById("orb-id").disabled = false;
+                      document.getElementById("diam-id").disabled = false;
+                    }
+                    else{
+                      tr[i].style.display = 'none';
+                      document.getElementById("surf-id").disabled = true;
+                      document.getElementById("rot-id").disabled = true;
+                      document.getElementById("orb-id").disabled = true;
+                      document.getElementById("diam-id").disabled = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          var filterInput2 = document.getElementById("rot-id");
+          if(filterInput2){
+            filterInput2.addEventListener('keyup', filterRot);
+
+            function filterRot(){
+              var filterValue = document.getElementById('rot-id').value.toUpperCase();
+              var table = document.getElementById('tbl-id');
+              var td = table.querySelectorAll('td.value-rot');
+              var tr = table.querySelectorAll('tr.tr-output');
+              var i;
+
+              for(i=0; i<td.length;i++){
+                var a = td[i].getElementsByTagName('p')[0];
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                  tr[i].style.display = '';
+                }
+                else{
+                  tr[i].style.display = 'none';
+                  for(i=0; i<td.length;i++){
+                      var a = td[i].getElementsByTagName('p')[0];
+
+                      if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                          tr[i].style.display = '';
+                          document.getElementById("name-id").disabled = false;
+                          document.getElementById("surf-id").disabled = false;
+                          document.getElementById("orb-id").disabled = false;
+                          document.getElementById("diam-id").disabled = false;
+                      }
+                      else{
+                          tr[i].style.display = 'none';
+                          document.getElementById("name-id").disabled = true;
+                          document.getElementById("surf-id").disabled = true;
+                          document.getElementById("orb-id").disabled = true;
+                          document.getElementById("diam-id").disabled = true;
+                      }
+                  }
+                }
+              }
+            }
+          }
+
+          var filterInput3 = document.getElementById("orb-id");
+          if(filterInput3){
+            filterInput3.addEventListener('keyup', filterOrb);
+
+            function filterOrb(){
+              var filterValue = document.getElementById('orb-id').value.toUpperCase();
+              var table = document.getElementById('tbl-id');
+              var td = table.querySelectorAll('td.value-orb');
+              var tr = table.querySelectorAll('tr.tr-output');
+              var i;
+
+              for(i=0; i<td.length;i++){
+                var a = td[i].getElementsByTagName('p')[0];
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                  tr[i].style.display = '';
+                }
+                else{
+                  tr[i].style.display = 'none';
+                  for(i=0; i<td.length;i++){
+                    var a = td[i].getElementsByTagName('p')[0];
+
+                    if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                      tr[i].style.display = '';
+                      document.getElementById("name-id").disabled = false;
+                      document.getElementById("rot-id").disabled = false;
+                      document.getElementById("surf-id").disabled = false;
+                      document.getElementById("diam-id").disabled = false;
+                    }
+                    else{
+                      tr[i].style.display = 'none';
+                      document.getElementById("name-id").disabled = true;
+                      document.getElementById("rot-id").disabled = true;
+                      document.getElementById("surf-id").disabled = true;
+                      document.getElementById("diam-id").disabled = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          var filterInput4 = document.getElementById("diam-id");
+          if(filterInput4){
+            filterInput4.addEventListener('keyup', filterDiam);
+
+            function filterDiam(){
+              var filterValue = document.getElementById('diam-id').value.toUpperCase();
+              var table = document.getElementById('tbl-id');
+              var td = table.querySelectorAll('td.value-diam');
+              var tr = table.querySelectorAll('tr.tr-output');
+              var i;
+
+              for(i=0; i<td.length;i++){
+                var a = td[i].getElementsByTagName('p')[0];
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                  tr[i].style.display = '';
+                }
+                else{
+                  tr[i].style.display = 'none';
+                  for(i=0; i<td.length;i++){
+                    var a = td[i].getElementsByTagName('p')[0];
+
+                    if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                      tr[i].style.display = '';
+                      document.getElementById("name-id").disabled = false;
+                      document.getElementById("rot-id").disabled = false;
+                      document.getElementById("orb-id").disabled = false;
+                      document.getElementById("surf-id").disabled = false;
+                    }
+                    else{
+                      tr[i].style.display = 'none';
+                      document.getElementById("name-id").disabled = true;
+                      document.getElementById("rot-id").disabled = true;
+                      document.getElementById("orb-id").disabled = true;
+                      document.getElementById("surf-id").disabled = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          var filterInput5 = document.getElementById("surf-id");
+          if(filterInput5){
+            filterInput5.addEventListener('keyup', filterSurf);
+
+            function filterSurf(){
+              var filterValue = document.getElementById('surf-id').value.toUpperCase();
+              var table = document.getElementById('tbl-id');
+              var td = table.querySelectorAll('td.value-surf');
+              var tr = table.querySelectorAll('tr.tr-output');
+              var i;
+
+              for(i=0; i<td.length;i++){
+                var a = td[i].getElementsByTagName('p')[0];
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                  tr[i].style.display = '';
+                }
+                else{
+                  tr[i].style.display = 'none';
+                  for(i=0; i<td.length;i++){
+                    var a = td[i].getElementsByTagName('p')[0];
+
+                    if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                      tr[i].style.display = '';
+                      document.getElementById("name-id").disabled = false;
+                      document.getElementById("rot-id").disabled = false;
+                      document.getElementById("orb-id").disabled = false;
+                      document.getElementById("diam-id").disabled = false;
+                    }
+                    else{
+                      tr[i].style.display = 'none';
+                      document.getElementById("name-id").disabled = true;
+                      document.getElementById("rot-id").disabled = true;
+                      document.getElementById("orb-id").disabled = true;
+                      document.getElementById("diam-id").disabled = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        </script>
+
+      </div>
+    </body>
+    </html>
